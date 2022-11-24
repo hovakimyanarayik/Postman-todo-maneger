@@ -17,7 +17,7 @@ const AccoutButtons = () => {
                 icon={<LoginOutlined />}
                 onClick={() => navigate('/login')}
             >
-                Login
+                Sign In / Up
             </Button>
         </div>
      );
