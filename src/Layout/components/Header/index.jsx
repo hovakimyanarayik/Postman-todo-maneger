@@ -2,15 +2,18 @@ import React from 'react';
 import { Header as HeaderAnt } from 'antd/es/layout/layout';
 import styled from 'styled-components';
 import Navbar from './components/Navbar';
-import AccoutButtons from './components/AccountButtons';
+import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
+import { useSelector } from 'react-redux';
 
 
 const Header = () => {
+    const {authorizated} = useSelector(state => state.user)
 
     return ( 
         <StyledHeader>
             <Navbar />
-            <AccoutButtons />
+            {authorizated ? <LogoutButton /> : <LoginButton />}
         </StyledHeader>
      );
 }
@@ -22,6 +25,7 @@ const StyledHeader = styled(HeaderAnt)`
     top: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     z-index: 100;
 `
  

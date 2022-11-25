@@ -2,23 +2,31 @@ import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import Routes from "./Routes";
-import { useDispatch } from 'react-redux'
-import { getUser } from "./slices/userSlice";
+
 
 import "./App.css";
+import { NotificationContainer, NotificationManager } from "react-notifications";
+import { useSelector } from "react-redux";
+
 
 
 
 function App() {
-  const dispatch = useDispatch()
+  const { error } = useSelector(state => state.user)
+
+  useEffect(() => {
+    if(!error) return
+    NotificationManager.error(error)
+  }, [error])
   
   useEffect(() => {
-    dispatch(getUser())
+    localStorage.removeItem('token')
   }, [])
 
   return (
     <BrowserRouter>
       <Layout>
+        <NotificationContainer />
         <Routes />
       </Layout>
     </BrowserRouter>

@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { LoginOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FlexColumnCenterBox from '../../components/FlexColumnCenterBox';
 import Form from '../../components/Form';
 import loginFields from './loginFormFields';
+import LoadingSkeleton from '../../components/LoadingSkeleton';
+import useAuthorization from '../../hooks/useAuthorization';
+
 
 const Login = () => {
-    const handleLogin = (values) => {
-        console.log(values);
+    const { handleSubmit, state: {authorizated, status} } = useAuthorization('login')
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(authorizated) {
+            navigate(-1, {replace: true})
+        }
+    }, [authorizated])
+
+    if(status === 'pending') {
+        return <LoadingSkeleton />
     }
+
     return ( 
         <FlexColumnCenterBox title="Sign In"> 
             <Form 
                 fields={loginFields} 
-                onSubmit={handleLogin}
+                onSubmit={handleSubmit}
                 buttonText='Login'
                 buttonIcon={<LoginOutlined />}
             />
@@ -21,5 +34,5 @@ const Login = () => {
         </FlexColumnCenterBox>
      );
 }
- 
+
 export default Login;

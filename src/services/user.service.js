@@ -4,18 +4,20 @@ const userEndPoint = "user/";
 
 const userService = {
   getMe: async () => {
-    const token = localStorage.getItem("token") || "";
     const response = await httpService.get(userEndPoint + "me", {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
     return response;
   },
   register: async (data) => {
     const response = await httpService.post(userEndPoint + "register", data);
-    console.log(response);
+    return response
   },
+  login: async (data) => {
+    const response = await httpService.post(userEndPoint + 'login', data )
+    return response
+  }
 };
-
 export default userService;

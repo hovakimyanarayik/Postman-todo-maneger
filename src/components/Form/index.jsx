@@ -5,18 +5,18 @@ import styled from 'styled-components';
 const { Item } = FormAnt
 
 const Form = ({fields, onSubmit, buttonText, buttonIcon}) => {
+    const [form] = FormAnt.useForm()
     const onFinish = (values) => {
         onSubmit(values)
+        form.setFieldsValue({password: ''})
       };
-
-    return ( 
+    return (
         <CustomForm
+            form={form}
             name="basic"
             onFinish={onFinish}
             autoComplete="off"
-            initialValues={{
-                age: 18
-            }}
+            initialValues={{age: 18}}
         >
             {fields.map(field => (
                 <Item

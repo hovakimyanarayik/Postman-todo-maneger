@@ -2,8 +2,8 @@ import loginFields from "../Login/loginFormFields"
 
 const registrationFields = [
     {
-        name: 'username',
-        label: 'Username',
+        name: 'name',
+        label: 'Name',
         rules: [
             {
                 required: true,

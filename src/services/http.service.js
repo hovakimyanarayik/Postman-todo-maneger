@@ -6,11 +6,7 @@ axios.defaults.baseURL = config.apiEndpoint;
 axios.interceptors.response.use(
   (res) => res,
   (error) => {
-    if (error.response.status === 401) {
-      throw new Error(error.response.data.error);
-    } else {
-      throw new Error("Error");
-    }
+    throw new Error(error.message)
   },
 );
 
