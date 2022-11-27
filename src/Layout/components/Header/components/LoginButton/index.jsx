@@ -9,8 +9,7 @@ const LoginButton = () => {
     
     return ( 
         <Button 
-            type='primary' 
-            ghost 
+            type='link' 
             icon={<LoginOutlined />}
             onClick={() => navigate('/login')}
         >

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import { useSelector } from 'react-redux';
+import ProfileButton from './components/ProfileButton';
 
 
 const Header = () => {
@@ -13,7 +14,14 @@ const Header = () => {
     return ( 
         <StyledHeader>
             <Navbar />
-            {authorizated ? <LogoutButton /> : <LoginButton />}
+            {authorizated ? 
+                <div>
+                    <ProfileButton />
+                    <LogoutButton /> 
+                </div>
+            : 
+                <LoginButton />
+            }
         </StyledHeader>
      );
 }
