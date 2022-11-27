@@ -39,13 +39,11 @@ export const getAvatar = createAsyncThunk(
 
 export const updateAvatar = createAsyncThunk(
   "user/updateAvatar",
-  async function (formData, { dispatch}) {
-    console.log(formData);
+  async function (formData, { rejectWithValue }) {
     try {
       await userService.updateAvatar(formData);
-      dispatch(getAvatar())
     } catch (error) {
-      console.log(error);
+      return rejectWithValue('Updating avatar fiiled')
     }
   },
 );
@@ -102,10 +100,14 @@ const userSlice = createSlice({
       })
       .addCase(getAvatar.fulfilled, (state, action) => {
         state.avatar = {url: action.payload}
+        state.error = null
       })
-      .addCase(updateAvatar.fulfilled, (state, action) => {
-        console.log(123);
-      });
+      .addCase(updateAvatar.fulfilled, (state) => {
+        state.error = null
+      })
+      .addCase(updateAvatar.rejected, (state, action) => {
+        state.error = action.payload
+      })
   },
 });
 

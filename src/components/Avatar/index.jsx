@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { Avatar as AvatarAnt } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAvatar } from '../../slices/userSlice';
+import { Avatar as AvatarAnt } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+
 
 const Avatar = ({ size }) => {
     const {authorizated, avatar} = useSelector(state => state.user)

@@ -6,21 +6,7 @@
   box-sizing: border-box;
 }
 
-.avatar-form {
-  align-self: flex-end;
-}
 
-.file-lable {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-  padding: 2px 5px;
-}
-
-#fileInput {
-  display: none;
-}
 
 label{
   cursor:pointer;

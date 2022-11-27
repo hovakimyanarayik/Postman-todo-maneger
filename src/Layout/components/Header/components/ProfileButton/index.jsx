@@ -1,7 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 import Avatar from '../../../../../components/Avatar';
-import { useNavigate } from 'react-router-dom';
 
 
 const ProfileButton = () => {

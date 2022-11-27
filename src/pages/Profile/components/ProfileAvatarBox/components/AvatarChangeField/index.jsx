@@ -1,8 +1,8 @@
-import { EditOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { getAvatar, updateAvatar } from '../../../../../../slices/userSlice';
+import { EditOutlined } from '@ant-design/icons';
 
 
 const AvatarChangeField = () => {
@@ -12,18 +12,19 @@ const AvatarChangeField = () => {
     function handleChange({ target }) {
         setAvatar(target.files[0])
     }
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         const formData = new FormData()
         formData.append('avatar', avatar)
-        dispatch(updateAvatar(formData))
+        await dispatch(updateAvatar(formData))
         setAvatar(null)
+        await dispatch(getAvatar())
     }
     return ( 
-        <form onSubmit={handleSubmit} className='avatar-form'> 
-            <label htmlFor="fileInput" className='file-lable'>
+        <AvatarChangeForm onSubmit={handleSubmit}> 
+            <StyledLabel htmlFor="fileInput">
                 <EditOutlined />
-                <input 
+                <StyledInput 
                     id="fileInput" 
                     name='avatar' 
                     type="file"
@@ -32,13 +33,29 @@ const AvatarChangeField = () => {
                 />
                 {avatar && 
                     <>
-                        <span className="imageName">{avatar.name}</span>
+                        <span>{avatar.name}</span>
                         <button type='submit'>OK</button>
                     </>
                 }
-            </label>
-        </form>
+            </StyledLabel>
+        </AvatarChangeForm>
      );
 }
+
+const AvatarChangeForm = styled.form`
+    align-self: flex-end;
+`
+
+const StyledLabel = styled.label`
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  padding: 2px 5px;
+`
+
+const StyledInput = styled.input`
+      display: none;
+`
  
 export default AvatarChangeField;

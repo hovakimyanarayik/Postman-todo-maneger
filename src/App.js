@@ -1,15 +1,12 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import Layout from "./Layout";
 import Routes from "./Routes";
+import Layout from "./Layout";
+import { useSelector } from "react-redux";
+import { NotificationContainer, NotificationManager } from "react-notifications";
 
 
 import "./App.css";
-import { NotificationContainer, NotificationManager } from "react-notifications";
-import { useSelector } from "react-redux";
-
-
-
 
 function App() {
   const { error } = useSelector(state => state.user)

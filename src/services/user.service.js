@@ -4,7 +4,7 @@ const userEndPoint = "user/";
 
 const userService = {
   getMe: async () => {
-    const response = await httpService.get(userEndPoint + "me", {
+    const response = await httpService.get(userEndPoint + "me",{
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -24,7 +24,6 @@ const userService = {
     return response
   },
   updateAvatar: async (formData) => {
-    console.log(localStorage.getItem('token'));
     const response = await httpService.post(userEndPoint + 'me/avatar', formData,{
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`

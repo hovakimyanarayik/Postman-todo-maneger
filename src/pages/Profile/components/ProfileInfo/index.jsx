@@ -1,7 +1,8 @@
-import { Card, Typography } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import InfoCardTitle from './components/InfoCardTitle';
+import { Card, Typography } from 'antd';
+
 
 const { Title } = Typography
 

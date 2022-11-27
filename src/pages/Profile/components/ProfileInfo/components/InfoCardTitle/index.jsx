@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { EditOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 import styled from 'styled-components';
-import EditModal from '../EditModal';
 
 const InfoCardTitle = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,13 +10,6 @@ const InfoCardTitle = () => {
     return ( 
         <Flex>
             About
-            {/* <Button 
-                shape='circle' 
-                type='primary' 
-                icon={<EditOutlined />} 
-                onClick={showModal}
-            /> */}
-            {/* <EditModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} /> */}
         </Flex>
      );
 }

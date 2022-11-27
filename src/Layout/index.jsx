@@ -1,7 +1,7 @@
-import { Layout as LayoutAnt} from 'antd';
-import { Content} from 'antd/es/layout/layout';
 import React from 'react';
 import styled from 'styled-components';
+import { Layout as LayoutAnt} from 'antd';
+import { Content} from 'antd/es/layout/layout';
 import Footer from './components/Footer';
 import Header from './components/Header';
 
@@ -31,7 +31,7 @@ const LayoutWrapper = styled(LayoutAnt)`
 const ContentBox = styled(Content)`
   width: 100%;
   height: 100%;
-  max-width: 1000px;
+  max-width: 700px;
   padding: 20px 0;
   margin-top: 64px;
   margin: 0 auto;
