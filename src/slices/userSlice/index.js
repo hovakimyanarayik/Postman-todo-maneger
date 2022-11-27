@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import userService from "../../services/user.service";
+import { NotificationManager } from "react-notifications";
+
 
 export const getUser = createAsyncThunk(
   "user/getUser",
@@ -42,6 +44,7 @@ export const updateAvatar = createAsyncThunk(
   async function (formData, { rejectWithValue }) {
     try {
       await userService.updateAvatar(formData);
+      getAvatar()
     } catch (error) {
       return rejectWithValue('Updating avatar fiiled')
     }
@@ -92,6 +95,7 @@ const userSlice = createSlice({
         state.status = "fulfilled";
         state.data = { ...action.payload };
         state.authorizated = true;
+        NotificationManager.success('Successfully authorizated')
       })
       .addCase(authorization.rejected, (state, action) => {
         state.status = "rejected";
@@ -104,6 +108,7 @@ const userSlice = createSlice({
       })
       .addCase(updateAvatar.fulfilled, (state) => {
         state.error = null
+        NotificationManager.success('Avatar updated')
       })
       .addCase(updateAvatar.rejected, (state, action) => {
         state.error = action.payload

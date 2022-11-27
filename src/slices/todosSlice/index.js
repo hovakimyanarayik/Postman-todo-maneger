@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import todosService from "../../services/todos.service";
+import { NotificationManager } from "react-notifications";
 
 
 export const getTodos = createAsyncThunk(
@@ -85,10 +86,13 @@ const todosSlice = createSlice({
                 state.todosList.push(action.payload.data)
                 state.count++
                 state.error = null
+                NotificationManager.success('Task added')
             })
             .addCase(deleteTodo.fulfilled, (state, { payload }) => {
                 state.todosList = state.todosList.filter(todo => todo._id !== payload.id)
                 state.count--
+                NotificationManager.info('Task deleted')
+
             })
     }
 })
